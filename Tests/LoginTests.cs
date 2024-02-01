@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NsTestFrameworkUI.Helpers;
 using TestingEcommerceAppExercise.Helpers;
 
 namespace TestingEcommerceAppExercise.Tests;
 
 [TestClass]
-public class CartTests : BaseTest
+public class LoginTests : BaseTest
 {
     [TestInitialize]
     public override void Before()
@@ -14,16 +13,15 @@ public class CartTests : BaseTest
     }
 
     [TestMethod]
-    public void ProductCanBeAddedToCartTest()
-    {
-        Browser.GoTo(Constants.Url);
 
+    public void UserIsAbleToLogin(string username, string password, bool isLoggedIn)
+    {
 
     }
 
-    [TestCleanup]
-    public override void After()
-    {
-        base.After();
+    [TestCleanup] 
+    public override void After() 
+    {  
+        base.After(); 
     }
 }

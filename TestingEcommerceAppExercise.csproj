@@ -20,8 +20,4 @@
     <PackageReference Include="NsTestFrameworkUI" Version="1.23.322.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
-
 </Project>
