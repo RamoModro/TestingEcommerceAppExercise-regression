@@ -14,4 +14,11 @@ public class BasePage
         WaitHelpers.ExplicitWait();
         return _errorMessages.GetElements().Select(message  => message.Text).ToList();
     }
+
+    public int GetIntFromPrice(string priceNonFormatted)
+    {
+        return int.Parse(priceNonFormatted
+            .Replace("$", "")
+            .Replace(".", ""));
+    }
 }
