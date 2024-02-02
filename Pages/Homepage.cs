@@ -13,7 +13,7 @@ namespace TestingEcommerceAppExercise.Pages
         private readonly By _searchInput = By.CssSelector("#search");
         private readonly By _searchButton = By.CssSelector(".action.search");
 
-        private readonly By _items = By.CssSelector(".item.product");
+        private readonly By _products = By.CssSelector(".item.product");
 
         private readonly By _sortByDropDown = By.CssSelector("#sorter");
         private readonly By _productsPrices = By.CssSelector(".price");
@@ -24,18 +24,19 @@ namespace TestingEcommerceAppExercise.Pages
 
         public bool IsCreateAccountLinkDisplayed() => _createAccountLink.IsElementPresent();
       
-        public void SearchItemByName(string keyword)
+        public void Search(string searchInput)
         {
-            _searchInput.ActionSendKeys(keyword);
+            _searchInput.ActionSendKeys(searchInput);
             _searchButton.ActionClick();
+            WaitHelpers.ExplicitWait();
         }
 
         public bool IsSearchButtonEnabled() => _searchButton.IsElementEnabled();
 
         public bool IsProductInResults(string searchedItem)
         {
-                var itemDetails = _items.GetElements();
-            return itemDetails[0].Text.Contains(searchedItem);            
+                var productDetails = _products.GetElements();
+            return productDetails[0].Text.Contains(searchedItem);            
         }
 
         public void SelectSortByDropdownValue()
@@ -54,6 +55,15 @@ namespace TestingEcommerceAppExercise.Pages
             return GetIntFromPrice(GetProductsPrices()[0].ToString())
                 >GetIntFromPrice(GetProductsPrices()[(GetProductsPrices().Count-1)].ToString());
         }
-      
+
+        public void OpenProduct(string name)
+        {
+            _products.WaitForElement();
+           var productDetails = _products.GetElements();
+            if (productDetails[0].Text.Contains(name))
+            {
+                productDetails.First().Click();
+            }          
+        }     
     }
 }

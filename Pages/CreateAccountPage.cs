@@ -5,7 +5,7 @@ using TestingEcommerceAppExercise.Helpers.Models;
 
 namespace TestingEcommerceAppExercise.Pages
 {
-    public class CreateCustomerAccountPage : BasePage
+    public class CreateAccountPage : BasePage
     {
         #region Selectors
 

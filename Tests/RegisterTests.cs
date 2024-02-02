@@ -26,8 +26,8 @@ public class RegisterTests : BaseTest
 
     public static IEnumerable<object[]> User()
     {
-        yield return new object[] { EmptyData, Messages.NewCustomerFormEmptyFieldsErrorMessages };
-        yield return new object[] { InvalidData, Messages.NewCustomerFormInvalidDataErrorMessages };
+        yield return new object[] { EmptyData, Messages.RequiredErrorMessages };
+        yield return new object[] { InvalidData, Messages.CustomerFormInvalidDataErrorMessages };
     }
 
     [TestInitialize]
@@ -42,8 +42,8 @@ public class RegisterTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.GoToCreateAccount();
-        Pages.CreateNewAccountPage.InsertUserDetails(new Customer());
-        Pages.CreateNewAccountPage.IsSuccessMessageDisplayed().Should().BeTrue();
+        Pages.CreateAccountPage.InsertUserDetails(new Customer());
+        Pages.CreateAccountPage.IsSuccessMessageDisplayed().Should().BeTrue();
         Pages.Homepage.IsCreateAccountLinkDisplayed().Should().BeFalse();
     }
 
@@ -54,8 +54,8 @@ public class RegisterTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.GoToCreateAccount();
-        Pages.CreateNewAccountPage.InsertUserDetails(user);
-        Pages.CreateNewAccountPage.GetErrorMessages().Should().BeEquivalentTo(errorMessages);
+        Pages.CreateAccountPage.InsertUserDetails(user);
+        Pages.CreateAccountPage.GetRequiredErrorMessages().Should().BeEquivalentTo(errorMessages);
     }    
 
     [TestCleanup]

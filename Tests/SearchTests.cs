@@ -20,7 +20,7 @@ public class SearchTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.IsSearchButtonEnabled().Should().BeFalse();
-        Pages.Homepage.SearchItemByName("Top");
+        Pages.Homepage.Search("Top");
         Pages.Homepage.IsProductInResults("Top").Should().BeTrue();
     }
 
@@ -29,9 +29,20 @@ public class SearchTests : BaseTest
     {
         Browser.GoTo(Constants.Url);
 
-        Pages.Homepage.SearchItemByName("Bag");
+        Pages.Homepage.Search("Bag");
         Pages.Homepage.SelectSortByDropdownValue();
         Pages.Homepage.IsPriceDescending().Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void CheckErrorMessagesWhenSearchingInvalidData()
+    {
+        Browser.GoTo(Constants.Url);
+
+        Pages.Homepage.Search("22");
+        Pages.Homepage.GetSearchErrorMessages().Should().Contain("Minimum Search query length is 3");
+        Pages.Homepage.Search("@@@");
+        Pages.Homepage.GetSearchErrorMessages().Should().BeEquivalentTo("Your search returned no results.");
     }
 
     [TestCleanup]
