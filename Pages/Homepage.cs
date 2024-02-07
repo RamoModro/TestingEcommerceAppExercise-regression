@@ -9,7 +9,7 @@ namespace TestingEcommerceAppExercise.Pages
         #region Selectors
 
         private readonly By _createAccountLink = By.XPath("//a[text()='Create an Account']");
-        private readonly By _signInLink = By.CssSelector("a[href*=\"login\"]");
+        private readonly By _signInLink = By.CssSelector("a[href*='login']");
 
         private readonly By _searchInput = By.CssSelector("#search");
         private readonly By _searchButton = By.CssSelector(".action.search");
@@ -19,7 +19,16 @@ namespace TestingEcommerceAppExercise.Pages
         private readonly By _sortByDropDown = By.CssSelector("#sorter");
         private readonly By _productsPrices = By.CssSelector(".price");
 
+        //private readonly By _menuTabs = By.CssSelector(".ui-menu li a");
+        //private readonly By _hoveTopContainers = By.CssSelector(".ui-menu li .level-top .ui-menu-icon");
+
         #endregion
+
+        //public void GoToMenu(Menu menu)
+        //{
+        //    _menuTabs.GetElements().First(x => x.Text.Equals(menu.ToString())).Click();
+        //    WaitHelpers.ExplicitWait();
+        //}
 
         public void GoToCreateAccount() => _createAccountLink.ActionClick();
 
@@ -61,7 +70,7 @@ namespace TestingEcommerceAppExercise.Pages
                 >GetIntFromPrice(GetProductsPrices()[(GetProductsPrices().Count-1)].ToString());
         }
 
-        public void OpenProduct(string itemName)
+        public void OpenSearchedProduct(string itemName)
         {
             PageHelpers.ScrollDownToView(5);
            var productDetails = _products.GetElements();

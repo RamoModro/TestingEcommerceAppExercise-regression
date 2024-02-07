@@ -8,6 +8,7 @@ namespace TestingEcommerceAppExercise.Tests;
 [TestClass]
 public class LoginTests : BaseTest
 {
+
     [TestInitialize]
     public override void Before()
     {

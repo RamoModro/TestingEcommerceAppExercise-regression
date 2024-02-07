@@ -16,7 +16,7 @@ public class BaseTest
     public virtual void Before()
     {
         Browser.InitializeDriver(new DriverOptions { 
-            IsHeadless = false,
+            IsHeadless = true,
             ChromeDriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
         });
         Browser.WebDriver.Manage().Window.Maximize();
@@ -25,6 +25,11 @@ public class BaseTest
     [TestCleanup]
     public virtual void After()
     {
-         Browser.Cleanup();
+        if (TestContext.CurrentTestOutcome.Equals(UnitTestOutcome.Failed))
+        {
+            var path = ScreenShot.GetScreenShotPath(TestContext.TestName);
+            TestContext.AddResultFile(path);
+        }
+        Browser.Cleanup();
     }
 }

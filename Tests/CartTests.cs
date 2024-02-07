@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
-using System.Runtime.ConstrainedExecution;
 using TestingEcommerceAppExercise.Helpers;
 
 namespace TestingEcommerceAppExercise.Tests;
@@ -21,7 +20,7 @@ public class CartTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Jacket");
-        Pages.Homepage.OpenProduct("Jacket");
+        Pages.Homepage.OpenSearchedProduct("Jacket");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.IsSuccessMessageDisplayed().Should().BeTrue();
@@ -37,7 +36,7 @@ public class CartTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Jacket");
-        Pages.Homepage.OpenProduct("Jacket");
+        Pages.Homepage.OpenSearchedProduct("Jacket");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();
@@ -52,7 +51,7 @@ public class CartTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Top");
-        Pages.Homepage.OpenProduct("Top");
+        Pages.Homepage.OpenSearchedProduct("Top");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();
@@ -67,11 +66,11 @@ public class CartTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Top");
-        Pages.Homepage.OpenProduct("Top");
+        Pages.Homepage.OpenSearchedProduct("Top");
         Pages.ProductPage.AddProductToCart();
 
         Pages.Homepage.Search("Pant");
-        Pages.Homepage.OpenProduct("Pant");
+        Pages.Homepage.OpenSearchedProduct("Pant");
         Pages.ProductPage.AddProductToCart();
 
         Pages.ProductPage.GoToCart();
@@ -85,7 +84,7 @@ public class CartTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Jacket");
-        Pages.Homepage.OpenProduct("Jacket");
+        Pages.Homepage.OpenSearchedProduct("Jacket");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();
@@ -95,13 +94,12 @@ public class CartTests : BaseTest
     }
 
     [TestMethod]
-
     public void ShippingRateCanBeAddedToOrderTest()
     {
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Jacket");
-        Pages.Homepage.OpenProduct("Jacket");
+        Pages.Homepage.OpenSearchedProduct("Jacket");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();

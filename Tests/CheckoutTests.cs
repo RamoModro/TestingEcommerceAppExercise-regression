@@ -24,7 +24,7 @@ public class CheckoutTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Jacket");
-        Pages.Homepage.OpenProduct("Jacket");
+        Pages.Homepage.OpenSearchedProduct("Jacket");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();
@@ -44,7 +44,7 @@ public class CheckoutTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.Search("Jacket");
-        Pages.Homepage.OpenProduct("Jacket");
+        Pages.Homepage.OpenSearchedProduct("Jacket");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();
@@ -64,7 +64,7 @@ public class CheckoutTests : BaseTest
         Pages.LoginPage.DoLogin(Constants.UserEmail, Constants.UserPass);
 
         Pages.Homepage.Search("Jacket");
-        Pages.Homepage.OpenProduct("Jacket");
+        Pages.Homepage.OpenSearchedProduct("Jacket");
 
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();
