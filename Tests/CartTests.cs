@@ -16,7 +16,7 @@ public class CartTests : BaseTest
     }
 
     [TestMethod]
-    public void AddProductToCartTest()
+    public void AddItemToCartTest()
     {
         Browser.GoTo(Constants.Url);
 
@@ -32,7 +32,7 @@ public class CartTests : BaseTest
     }
 
     [TestMethod]
-    public void ModifyProductQuantityInCartTest()
+    public void ModifyItemQuantityInCartTest()
     {
         Browser.GoTo(Constants.Url);
 
@@ -47,7 +47,7 @@ public class CartTests : BaseTest
     }
 
     [TestMethod]
-    public void CheckProductCartSubtotalTest()
+    public void ItemSubtotalIsUpdatedTest()
     {
         Browser.GoTo(Constants.Url);
 
@@ -58,12 +58,57 @@ public class CartTests : BaseTest
         Pages.ProductPage.GoToCart();
 
         Pages.CartPage.ChangeProductQuantity("5");
+        Pages.CartPage.IsProductSubtotalCorrectlyUpdated().Should().BeTrue();
     }
 
-    //public void CheckErrorMessagesWhenAddingProductToCartTest()
-    //{
+    [TestMethod]
+    public void ItemCanBeRemovedFromCartTest()
+    {
+        Browser.GoTo(Constants.Url);
 
-    //}
+        Pages.Homepage.Search("Top");
+        Pages.Homepage.OpenProduct("Top");
+        Pages.ProductPage.AddProductToCart();
+
+        Pages.Homepage.Search("Pant");
+        Pages.Homepage.OpenProduct("Pant");
+        Pages.ProductPage.AddProductToCart();
+
+        Pages.ProductPage.GoToCart();
+        Pages.CartPage.RemoveFirstItemFromCart();
+        Pages.CartPage.IsProductInCart("Top").Should().BeFalse();
+    }
+
+    [TestMethod]
+    public void CheckoutPageIsDisplayedTest()
+    {
+        Browser.GoTo(Constants.Url);
+
+        Pages.Homepage.Search("Jacket");
+        Pages.Homepage.OpenProduct("Jacket");
+
+        Pages.ProductPage.AddProductToCart();
+        Pages.ProductPage.GoToCart();
+
+        Pages.CartPage.ClickCheckout();
+        Pages.CheckoutPage.IsCheckoutPageDisplayed().Should().BeTrue();
+    }
+
+    [TestMethod]
+
+    public void ShippingRateCanBeAddedToOrderTest()
+    {
+        Browser.GoTo(Constants.Url);
+
+        Pages.Homepage.Search("Jacket");
+        Pages.Homepage.OpenProduct("Jacket");
+
+        Pages.ProductPage.AddProductToCart();
+        Pages.ProductPage.GoToCart();
+
+        Pages.CartPage.AddShippingRate();
+        Pages.CartPage.IsShippingRateAddedToOrder();
+    }
 
     [TestCleanup]
     public override void After()

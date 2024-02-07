@@ -9,4 +9,6 @@ public static class Pages
     public static CreateAccountPage CreateAccountPage = PageHelpers.InitPage(new CreateAccountPage());
     public static ProductPage ProductPage = PageHelpers.InitPage(new ProductPage());
     public static CartPage CartPage = PageHelpers.InitPage(new CartPage());
+    public static CheckoutPage CheckoutPage = PageHelpers.InitPage(new CheckoutPage());
+    public static LoginPage LoginPage = PageHelpers.InitPage(new LoginPage());
 }

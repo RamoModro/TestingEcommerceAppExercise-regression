@@ -18,8 +18,6 @@ public class ProductPage : BasePage
 
     private readonly By _shoppingCartLink = By.XPath("//a[text()='shopping cart']");
 
-    //private readonly By _viewCartButton = By.CssSelector(".action.showcart");
-
     #endregion
 
     public void ClickAddToCart()
@@ -29,10 +27,9 @@ public class ProductPage : BasePage
 
     public void AddProductToCart()
     {
-        PageHelpers.ScrollDownToView(50);
         if(!AreProductDetailsOptionsPresent()) return;
-        _sizeOptions.GetElements().First().Click();
-        _colorOptions.GetElements().First().Click();
+            _sizeOptions.GetElements().First().Click();
+            _colorOptions.GetElements().First().Click();
         ClickAddToCart();
     }
 

@@ -9,11 +9,12 @@ namespace TestingEcommerceAppExercise.Pages
         #region Selectors
 
         private readonly By _createAccountLink = By.XPath("//a[text()='Create an Account']");
+        private readonly By _signInLink = By.CssSelector("a[href*=\"login\"]");
 
         private readonly By _searchInput = By.CssSelector("#search");
         private readonly By _searchButton = By.CssSelector(".action.search");
 
-        private readonly By _products = By.CssSelector(".item.product");
+        private readonly By _products = By.CssSelector(".products .item.product");
 
         private readonly By _sortByDropDown = By.CssSelector("#sorter");
         private readonly By _productsPrices = By.CssSelector(".price");
@@ -22,8 +23,12 @@ namespace TestingEcommerceAppExercise.Pages
 
         public void GoToCreateAccount() => _createAccountLink.ActionClick();
 
+        public void GoToLogin() => _signInLink.ActionClick();
+
         public bool IsCreateAccountLinkDisplayed() => _createAccountLink.IsElementPresent();
-      
+
+        public bool IsSignInLinkDisplayed() => _signInLink.IsElementPresent();
+
         public void Search(string searchInput)
         {
             _searchInput.ActionSendKeys(searchInput);
@@ -56,13 +61,14 @@ namespace TestingEcommerceAppExercise.Pages
                 >GetIntFromPrice(GetProductsPrices()[(GetProductsPrices().Count-1)].ToString());
         }
 
-        public void OpenProduct(string name)
+        public void OpenProduct(string itemName)
         {
-            _products.WaitForElement();
+            PageHelpers.ScrollDownToView(5);
            var productDetails = _products.GetElements();
-            if (productDetails[0].Text.Contains(name))
+            if (productDetails[0].Text.Contains(itemName))
             {
                 productDetails.First().Click();
+                WaitHelpers.ExplicitWait();
             }          
         }     
     }
