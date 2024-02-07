@@ -57,7 +57,7 @@ public class CartPage : BasePage
 
     public void RemoveFirstItemFromCart() => _removeItemButtons.GetElements().First().Click();
 
-    public void ClickCheckout() => _checkoutButton.ActionClick();
+    public void GoToCheckout() => _checkoutButton.ActionClick();
 
     public void AddShippingRate()
     {

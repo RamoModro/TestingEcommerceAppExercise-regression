@@ -20,8 +20,7 @@ public class LoginTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.GoToLogin();
-        Pages.LoginPage.InsertLoginDetails(Constants.UserEmail, Constants.UserPass);
-        Pages.LoginPage.ClickSignIn();
+        Pages.LoginPage.DoLogin(Constants.UserEmail, Constants.UserPass);
         Pages.Homepage.IsSignInLinkDisplayed().Should().BeFalse();
     }
 
@@ -31,11 +30,9 @@ public class LoginTests : BaseTest
         Browser.GoTo(Constants.Url);
 
         Pages.Homepage.GoToLogin();
-        Pages.LoginPage.InsertLoginDetails("invalid@mail.com", Constants.UserPass);
-        Pages.LoginPage.ClickSignIn();
+        Pages.LoginPage.DoLogin("invalid@mail.com", Constants.UserPass);
         Pages.LoginPage.IsInvalidAccountErrorMessageDisplayed().Should().BeTrue();
-        Pages.LoginPage.InsertLoginDetails(Constants.UserEmail, "@@@");
-        Pages.LoginPage.ClickSignIn();
+        Pages.LoginPage.DoLogin(Constants.UserEmail, "@@@");
         Pages.LoginPage.IsInvalidAccountErrorMessageDisplayed().Should().BeTrue();
     }
 

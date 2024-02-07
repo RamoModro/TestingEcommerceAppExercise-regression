@@ -4,6 +4,7 @@ using NsTestFrameworkUI.Helpers;
 using RestSharp;
 using System.Reflection;
 
+[assembly: Parallelize(Workers = 4, Scope = ExecutionScope.MethodLevel)]
 namespace TestingEcommerceAppExercise.Helpers;
 
 public class BaseTest

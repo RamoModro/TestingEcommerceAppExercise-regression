@@ -90,7 +90,7 @@ public class CartTests : BaseTest
         Pages.ProductPage.AddProductToCart();
         Pages.ProductPage.GoToCart();
 
-        Pages.CartPage.ClickCheckout();
+        Pages.CartPage.GoToCheckout();
         Pages.CheckoutPage.IsCheckoutPageDisplayed().Should().BeTrue();
     }
 

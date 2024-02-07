@@ -18,10 +18,11 @@ public class LoginPage : BasePage
 
     public void ClickSignIn() => _signInButton.ActionClick();
 
-    public void InsertLoginDetails(string email, string password)
+    public void DoLogin(string email, string password)
     {
         _emailInput.ActionSendKeys(email);
         _passwordInput.ActionSendKeys(password);
+        ClickSignIn();
     }
 
     public bool IsInvalidAccountErrorMessageDisplayed()
